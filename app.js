@@ -1,4 +1,4 @@
-//jshint esversion:6
+
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,10 +14,18 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+app.use(express.static("views/partials"));
 
+app.get('/', function(req, res){
+  res.render("home", {StartingContent: homeStartingContent})
+})
 
-
-
+app.get('/about', function(req, res){
+  res.render("about", {Acontent: aboutContent})
+})
+app.get("/contact", function(req, res){
+  res.render("contact", {contact:contactContent})
+})
 
 
 
