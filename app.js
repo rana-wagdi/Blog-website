@@ -38,7 +38,7 @@ app.get("/compose", function(req, res){
 
 app.post('/compose', function(req, res){
 
-  const post = {
+  let post = {
     title: req.body.postTitle,
    content: req.body.postBody
   } 
@@ -53,9 +53,18 @@ res.redirect("/");
 
 
 app.get("/posts/:postId", function(req, res){
-  console.log(req.params.postId);
+  const requestTitle = req.params.postId;
+  
+  posts.forEach(function(post){
+    const storedTitle = post.title;
+
+    if (storedTitle === requestTitle) {
+  console.log("Match");
+    }
+  })
 })
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
-});
+
+  app.listen(3000, function () {
+    console.log("Server started on port 3000");
+  });
